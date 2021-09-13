@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_blank">
+    <title>绿叶主页</title>
+    <style>
+        body {
+            background-image: url(image/bg.webp);
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            font-size: 1.5em;
+        }
+        #main_div {
+            background: rgba(255, 255, 255, 0.5);
+            max-width: 80%;
+            min-height: 80%;
+            margin: 40px auto;
+            text-align: center;
+        }
+        #main_tiele {
+            max-width: 40%;
+        }
+        a {
+            text-decoration: none
+        }
+        a img {
+            width: 1em;
+            height: 1em;
+            vertical-align: -10%;
+        }
+        a:after { 
+            content:"\3000";
+        }
+    </style>
+</head>
+<body>
+    <div id="main_div">
+        <br />
+        <img id="main_tiele" src="image/title.png" alt="">
+        <br /><br />
+        <form method="get" action="https://www.baidu.com/s">
+            <input type="text" name="wd" placeholder="输入搜索内容" value=""><input type="submit" value="百度一下" />
+        </form>
+        <br />
+        搜索引擎：
+        <a href="http://www.baidu.com"><img src="http://www.baidu.com/favicon.ico">百度</a>
+        <a href="http://www.so.com"><img src="http://www.so.com/favicon.ico">360</a>
+        <a href="http://www.sogou.com"><img src="http://www.sogou.com/favicon.ico">搜狗</a>
+        <br />
+        工具类：
+        <a href="https://www.51240.com/"><img src="https://www.51240.com/favicon.ico">便民查询网</a>
+        <a href="https://pan.baidu.com/"><img src="https://pan.baidu.com/m-static/base/static/images/favicon.ico">百度网盘</a>
+        <a href="https://www.baidu.com/s?ie=UTF-8&wd=%E6%97%A5%E5%8E%86"><img src="http://www.baidu.com/favicon.ico">日历</a>
+        <br />
+        媒体类：
+        <a href="https://music.163.com/"><img src="https://s1.music.126.net/style/favicon.ico?v20180823">网易云音乐</a>
+        <a href="https://www.bilibili.com/"><img src="https://www.bilibili.com/favicon.ico">哔哩哔哩</a>
+        <br />
+        购物类：
+        <a href="https://www.taobao.com/"><img src="https://www.taobao.com/favicon.ico">淘宝</a>
+        <br /><br />
+    </div>
+</body>
+</html>
