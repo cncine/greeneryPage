@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>森禅视频站github版</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="https://senchan.oss-cn-hangzhou.aliyuncs.com/video/assets/hivideo.css" />
+    <script type="text/javascript" src="https://senchan.oss-cn-hangzhou.aliyuncs.com/video/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://senchan.oss-cn-hangzhou.aliyuncs.com/video/hivideo.js"></script>
+    <style type="text/css">
+
+        html, body, .main-wrap, .main-wrap video {
+            margin: 0;
+            padding: 0;
+			border: 0;
+        }
+        .main-wrap{
+            margin: 0 auto;
+            width: 100%;
+			height: 100vh ;
+        }
+
+        .main-wrap video{
+            width: 100%;
+			height: calc(100vh - 4px);
+        }
+        .title-div {
+            position: absolute;
+            margin-bottom: 1rem;
+            background-color: dimgray;
+            opacity: 0.5;
+            width: calc(100% - 2rem);
+            padding: 1rem;
+            z-index: 10;
+        }
+        .title-div:hover {
+            opacity: 1;
+        }
+        .title-div input {
+            float: right;
+        }
+		.title-div span{
+		    color: white;
+		}
+        .sel-div {
+            z-index: 10001;
+            position: fixed;
+            width: 75%;
+            height: 75vh;
+            border-radius: 1vh;
+            background: white;
+            left: 50%; top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 1rem;
+            overflow: auto;
+            border:0.2rem solid black;
+			font-size: x-large;
+			display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="sel-div">
+
+    </div>
+    <div class="title-div">
+        <span>没有视频</span>
+        <input type="button" value="切换" onclick="$('.sel-div').show();" />
+    </div>
+    <div class="main-wrap">
+        
+        <video ishivideo="true" isrotate="false" autoHide="true">
+            <source src="" type="video/mp4">
+        </video>
+    </div>
+    <script>
+        document.addEventListener('gesturestart', function (event) {
+            event.preventDefault()
+        });
+        $.ajax({url:"https://senchan.oss-cn-hangzhou.aliyuncs.com/video/list.txt",async:true,success:function(result){
+			var tmp1 = result.split("\r\n");
+            for (var i = 0; i < tmp1.length; i++) {
+                var tmp2 = tmp1[i].split(" ");
+                $(".sel-div").append("<div><a href=\"javascript:switchPlay(\'" + tmp2[0] + "\',\'" + tmp2[2] +"\');\">" + tmp2[2] + "</a>&emsp;" + tmp2[1] + "</div>");
+            }
+		}});
+		function switchPlay(path, name) {
+			//读取视频
+			$("video").attr("src", "https://senchan.oss-cn-hangzhou.aliyuncs.com/video/file/" + path);
+			
+			//复位的代码
+			window.videoHandle.video.currentTime = 0;
+			window.videoHandle.videoPlayIcon && window.videoHandle.exchangeBtnStatus(window.videoHandle.videoPlayIcon, true);
+			window.videoHandle.playBtn && window.videoHandle.exchangeBtnStatus(window.videoHandle.playBtn, true);
+			
+			//标签更改
+			$(".title-div span").html(name);
+			$(".sel-div").hide();
+		}
+    </script>
+</body>
+</html>
